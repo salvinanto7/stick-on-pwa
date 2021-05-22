@@ -1,7 +1,10 @@
-var count=0;
+let count=Number(window.localStorage.getItem("count"));
+if (!count){
+    window.localStorage.setItem("count","0");
+}
 
 function  createNote(noteTitle,noteBody){
-    count+=1;
+
     document.getElementById("no-notes").classList.add("hidden");
 
     let li=document.createElement("li");    
@@ -39,6 +42,9 @@ function removeNote(e){
         }
     }
     count-=1;
+    window.localStorage.setItem("count",count);
+
+    window.localStorage.removeItem(e.target.previousElementSibling.innerText);
     if (count<1){
         document.getElementById("no-notes").className="";
     }
@@ -48,14 +54,30 @@ function createNoteFromInput(e){
 
     let noteTitle=document.getElementById("new-note-title-input").value;
     let noteBody=document.getElementById("new-note-content-input").value;
-    console.log(noteTitle,noteBody);
-    createNote(noteTitle,noteBody);
 
+    count+=1;
+    window.localStorage.setItem("count",count);
+
+    while(window.localStorage.getItem(noteTitle)){
+        noteTitle+="(1)";
+    }
+    window.localStorage.setItem(noteTitle,noteBody);
+
+    createNote(noteTitle,noteBody);
+    
     document.getElementById("new-note-title-input").value="";
     document.getElementById("new-note-content-input").value="";
 
 }
 
+for(i=0;i<count;i++){
+    let noteTitle=window.localStorage.key(i);
+    let noteBody=window.localStorage.getItem(noteTitle);
+
+    if (noteTitle!=="count" && noteTitle){
+    createNote(noteTitle,noteBody);
+    }
+}
 document
     .getElementById("inputform")
     .addEventListener("submit",createNoteFromInput,false);
