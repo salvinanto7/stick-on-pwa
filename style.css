@@ -103,7 +103,7 @@ ul li p{
     font-size:15px;
 }
 
-.delete{
+.deletebtn{
     float:right;
     position: absolute;
     top:0;
@@ -117,8 +117,12 @@ ul li p{
     cursor:pointer;
 }
 
-.delete:active{
+.deletebtn:active{
  box-shadow: inset0 0 5px #000;   
+}
+.deletebtn:hover{
+    color:#fff;
+    background-color: #f00;
 }
 
 ul li a{
