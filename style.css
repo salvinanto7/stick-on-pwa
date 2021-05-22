@@ -94,13 +94,13 @@ ul li {
     position: relative;
 }
 ul li h3{
-    font-size:20px;
+    font-size:25px;
     font-weight:bold;
     padding-bottom:10px;
 }
 ul li p{
     font-family:"Reenie Beanie",cursive;
-    font-size:15px;
+    font-size:20px;
 }
 
 .deletebtn{
